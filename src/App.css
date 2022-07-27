@@ -3,6 +3,7 @@
   --color-bgtext: #ebd6b6;
   --color-text: #280003;
   --color-text-header: #C2847A;
+  --color-hovertest: #BAA898;
 }
 
 
@@ -76,4 +77,27 @@ body {
   height: 8vh;
   border-radius: 10px;
   background-color: var(--color-bgtext);
+}
+
+.main-list {
+  padding: 0;
+  margin: 16px 0;
+  height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.main-list-item {
+  border-bottom: 1px solid;
+  margin-bottom: 12px;
+  padding: 8px 16px;
+  transition: all 0.2s ease-in-out;
+
+}
+
+
+
+.main-list-item:hover {
+  background-color: var(--color-hovertest);
+  cursor: pointer;
 }

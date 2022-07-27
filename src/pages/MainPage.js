@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { db } from "../firebase-config"
 import { addDoc, collection } from "firebase/firestore"
+import { Link } from "react-router-dom"
 
 const MainPage = ({history}) => {
     let [location, setLocation] = useState([])
@@ -36,6 +37,9 @@ const MainPage = ({history}) => {
                 <div className="main">
                     <div className="main-header">
                         <h3 className="main-title">Geolocator</h3>
+                        <Link to={`/locations`}>
+                            <h3>Saved locations</h3>
+                        </Link>
                     </div>
                     <div className="main-body">
                         <p> Latitude: {location[0]} </p>
