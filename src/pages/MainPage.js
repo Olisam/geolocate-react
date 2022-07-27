@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { db } from "../firebase-config"
 import { addDoc, collection } from "firebase/firestore"
 
-const MainPage = () => {
+const MainPage = ({history}) => {
     let [location, setLocation] = useState([])
     let [locationdescription, setDescription] = useState([])
 
@@ -27,7 +27,7 @@ const MainPage = () => {
     let handleSubmit = () => {
         const locationRef = collection(db, "locations")
         addDoc(locationRef, { description: locationdescription, latitude: location[0], longitude: location[1] })
-        console.log("hey")
+        setDescription('')
     }
 
     return (
@@ -45,8 +45,10 @@ const MainPage = () => {
                             className="textarea"
                             
                             onChange={(e) => {
-                                setDescription({ ...locationdescription, body: e.target.value })
+                                setDescription(e.target.value)
                             }}
+
+                            value={locationdescription}
                             
                         ></textarea>
 
