@@ -4,6 +4,7 @@ import { addDoc, collection } from "firebase/firestore"
 
 const MainPage = () => {
     let [location, setLocation] = useState([])
+    let [locationdescription, setDescription] = useState([])
 
     useEffect(() => {
         getLocation()
@@ -25,7 +26,7 @@ const MainPage = () => {
 
     let handleSubmit = () => {
         const locationRef = collection(db, "locations")
-        addDoc(locationRef, { latitude: location[0], longitude: location[1] })
+        addDoc(locationRef, { description: locationdescription, latitude: location[0], longitude: location[1] })
         console.log("hey")
     }
 
@@ -40,7 +41,14 @@ const MainPage = () => {
                         <p> Latitude: {location[0]} </p>
                         <p> Longitude: {location[1]} </p>
 
-                        
+                        <textarea
+                            className="textarea"
+                            
+                            onChange={(e) => {
+                                setDescription({ ...locationdescription, body: e.target.value })
+                            }}
+                            
+                        ></textarea>
 
                         <button onClick={handleSubmit}>SEND</button>
                     </div>
