@@ -3,12 +3,16 @@ import { db } from "../firebase-config"
 import { addDoc, collection } from "firebase/firestore"
 import { Link } from "react-router-dom"
 
-const MainPage = ({history}) => {
+const MainPage = () => {
     let [location, setLocation] = useState([])
     let [locationdescription, setDescription] = useState([])
 
     useEffect(() => {
         getLocation()
+        const interval = setInterval(() => {
+            getLocation()
+          }, 10000);
+          return () => clearInterval(interval);
     }, [])
 
     let getLocation = async () => {
@@ -30,6 +34,8 @@ const MainPage = ({history}) => {
         addDoc(locationRef, { description: locationdescription, latitude: location[0], longitude: location[1] })
         setDescription('')
     }
+
+    
 
     return (
         <div className="container">
