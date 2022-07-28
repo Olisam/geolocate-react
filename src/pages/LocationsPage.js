@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { db } from "../firebase-config"
-import { addDoc, collection, getDocs } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore"
 import { Link } from "react-router-dom"
 
 const LocationsPage = () => {
