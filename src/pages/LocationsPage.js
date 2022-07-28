@@ -27,17 +27,22 @@ const LocationsPage = () => {
                         </Link>
                     </div>
                     <div className="main-list">
-                        <div>
+                        <table>
+                            <tr>
+                                <th>Description</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
                             {places.map((place) => {
                                 return (
-                                    <div className="main-list-item">
-                                        <h1>{place.description}</h1>
-                                        <p>Latitude: {place.latitude}</p>
-                                        <p>Longitude: {place.longitude}</p>
-                                    </div>
+                                    <tr className="main-list-item">
+                                        <td>{place.description}</td>
+                                        <td>{place.latitude}</td>
+                                        <td>{place.longitude}</td>
+                                    </tr>
                                 )
                             })}
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
