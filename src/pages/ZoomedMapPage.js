@@ -5,12 +5,18 @@ import { collection, getDocs } from "firebase/firestore"
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 
-const LocationsPage = () => {
+const LocationsPage = ({match}) => {
 
+    let notedescription = match.params.note
+ 
+    let centerlat = notedescription.split('&')[0]
+    let centerlong = notedescription.split('&')[1]
+    
     let [pins, setPins] = useState([])
 
     useEffect(() => {
         getPins()
+        
     }, [])
 
     let getPins = async () => {
@@ -19,11 +25,11 @@ const LocationsPage = () => {
         setPins(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
 
-    const position = [50.41533, -4.5878783]
+    const position = [centerlat, centerlong]
 
     return (
         <div>
-            <MapContainer center={position} zoom={9} scrollWheelZoom={true}>
+            <MapContainer center={position} zoom={20} scrollWheelZoom={true}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

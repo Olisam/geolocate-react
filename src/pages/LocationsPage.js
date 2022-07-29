@@ -3,6 +3,8 @@ import { db } from "../firebase-config"
 import { collection, getDocs } from "firebase/firestore"
 import { Link } from "react-router-dom"
 
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+
 const LocationsPage = () => {
     let [places, setPlaces] = useState([])
 
@@ -16,12 +18,17 @@ const LocationsPage = () => {
         setPlaces(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
 
+    const position = [50.41533, -4.5878783]
+
     return (
         <div className="container">
             <div className="app">
                 <div className="main">
                     <div className="main-header">
                         <h3 className="main-title">Geolocator</h3>
+                        <Link to={`/map`}>
+                            <h3>Map view</h3>
+                        </Link>
                         <Link to={`/`}>
                             <h3>Back</h3>
                         </Link>
@@ -36,7 +43,11 @@ const LocationsPage = () => {
                             {places.map((place) => {
                                 return (
                                     <tr className="main-list-item">
-                                        <td>{place.description}</td>
+                                        <td>
+                                            <Link to={`/zoommap/${place.latitude}&${place.longitude}`}>
+                                                <div>{place.description}</div>
+                                            </Link>
+                                        </td>
                                         <td>{place.latitude}</td>
                                         <td>{place.longitude}</td>
                                     </tr>
