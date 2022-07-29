@@ -5,7 +5,7 @@ import { collection, getDocs } from "firebase/firestore"
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 
-import * as L from "leaflet";
+// import * as L from "leaflet"
 
 const LocationsPage = ({ match }) => {
     let notedescription = match.params.note
@@ -28,14 +28,14 @@ const LocationsPage = ({ match }) => {
 
     const position = [centerlat, centerlong]
 
-    const LeafIcon = L.Icon.extend({
-        options: {}
-      });
+        // const LeafIcon = L.Icon.extend({
+        //     options: {},
+        // })
 
-    let greenIcon = new LeafIcon({
-        iconUrl:
-          "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF"
-      });
+    //let greenIcon = new LeafIcon({
+    //    iconUrl:
+    //      "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF"
+    //  });
 
     return (
         <div>
