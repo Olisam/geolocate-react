@@ -138,3 +138,7 @@ th {
   position: absolute;
   bottom: 0;
 }
+
+svg {
+  margin-bottom: -10px;
+}
