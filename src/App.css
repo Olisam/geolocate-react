@@ -121,3 +121,10 @@ th {
   width: 100vw;
   height: 100vh;
 }
+
+.wave {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -10px;
+}

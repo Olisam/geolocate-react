@@ -3,6 +3,8 @@ import { db } from "../firebase-config"
 import { addDoc, collection } from "firebase/firestore"
 import { Link } from "react-router-dom"
 
+import Wave from 'react-wavify'
+
 const MainPage = () => {
     let [location, setLocation] = useState([])
     let [locationdescription, setDescription] = useState([])
@@ -11,8 +13,8 @@ const MainPage = () => {
         getLocation()
         const interval = setInterval(() => {
             getLocation()
-          }, 10000);
-          return () => clearInterval(interval);
+        }, 10000)
+        return () => clearInterval(interval)
     }, [])
 
     let getLocation = async () => {
@@ -31,14 +33,26 @@ const MainPage = () => {
 
     let handleSubmit = () => {
         const locationRef = collection(db, "locations")
-        addDoc(locationRef, { description: locationdescription, latitude: location[0], longitude: location[1] })
-        setDescription('')
+        addDoc(locationRef, {
+            description: locationdescription,
+            latitude: location[0],
+            longitude: location[1],
+        })
+        setDescription("")
     }
-
-    
 
     return (
         <div className="container">
+            <Wave className="wave"
+                fill="#f79902"
+                paused={false}
+                options={{
+                    height: 20,
+                    amplitude: 20,
+                    speed: 0.15,
+                    points: 3,
+                }}
+            />
             <div className="app">
                 <div className="main">
                     <div className="main-header">
@@ -53,13 +67,10 @@ const MainPage = () => {
 
                         <textarea
                             className="textarea"
-                            
                             onChange={(e) => {
                                 setDescription(e.target.value)
                             }}
-
                             value={locationdescription}
-                            
                         ></textarea>
 
                         <button onClick={handleSubmit}>SEND</button>
