@@ -5,18 +5,19 @@ import { collection, getDocs } from "firebase/firestore"
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 
-const LocationsPage = ({match}) => {
+import * as L from "leaflet";
 
+const LocationsPage = ({ match }) => {
     let notedescription = match.params.note
- 
-    let centerlat = notedescription.split('&')[0]
-    let centerlong = notedescription.split('&')[1]
-    
+    console.log(notedescription)
+
+    let centerlat = notedescription.split("&")[0]
+    let centerlong = notedescription.split("&")[1]
+
     let [pins, setPins] = useState([])
 
     useEffect(() => {
         getPins()
-        
     }, [])
 
     let getPins = async () => {
@@ -27,6 +28,15 @@ const LocationsPage = ({match}) => {
 
     const position = [centerlat, centerlong]
 
+    const LeafIcon = L.Icon.extend({
+        options: {}
+      });
+
+    let greenIcon = new LeafIcon({
+        iconUrl:
+          "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF"
+      });
+
     return (
         <div>
             <MapContainer center={position} zoom={20} scrollWheelZoom={true}>
@@ -35,16 +45,15 @@ const LocationsPage = ({match}) => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {pins.map((pin) => {
-                    return (
-                        <Marker position={[pin.latitude,pin.longitude]}>
+                {pins.map((pin) =>
+                    pin.latitude === centerlat ? (
+                        <Marker icon={greenIcon} position={[pin.latitude, pin.longitude]}>
                             <Popup>
                                 {pin.description} <br />
                             </Popup>
                         </Marker>
-                    )
-                })}
-
+                    ) : null
+                )}
             </MapContainer>
         </div>
     )
