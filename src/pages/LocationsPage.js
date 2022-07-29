@@ -3,7 +3,7 @@ import { db } from "../firebase-config"
 import { collection, getDocs } from "firebase/firestore"
 import { Link } from "react-router-dom"
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+
 
 const LocationsPage = () => {
     let [places, setPlaces] = useState([])
