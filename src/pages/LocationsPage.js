@@ -18,7 +18,7 @@ const LocationsPage = () => {
         setPlaces(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
 
-    const position = [50.41533, -4.5878783]
+    //const position = [50.41533, -4.5878783]
 
     return (
         <div className="container">
