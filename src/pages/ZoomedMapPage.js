@@ -46,7 +46,7 @@ const LocationsPage = ({ match }) => {
                 />
 
                 {pins.map((pin) =>
-                    pin.latitude == centerlat ? (
+                    Number(pin.latitude) === Number(centerlat) ? (
                         <Marker position={[pin.latitude, pin.longitude]}>
                             <Popup>
                                 {pin.description} <br />
