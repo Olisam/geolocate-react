@@ -83,6 +83,27 @@ body {
   position: relative;
 }
 
+#leftside {
+  background-color: orange;
+  width: 20%;
+  height: 20%;
+  position: absolute;
+}
+
+#rightside {
+  right: 0;
+  background-color: orange;
+  width: 20%;
+  height: 20%;
+  position: absolute;
+}
+
+@media screen and (max-width: 1000px) {
+  .side {
+      display: none;
+  }
+}
+
 .main-header {
   display: flex;
   align-items: center;

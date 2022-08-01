@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { db } from "../firebase-config"
 import { collection, getDocs } from "firebase/firestore"
 import { Link } from "react-router-dom"
+import Wave from "react-wavify"
 
 const LocationsPage = () => {
     let [places, setPlaces] = useState([])
@@ -84,6 +85,18 @@ const LocationsPage = () => {
 
     return (
         <div className="container">
+            <Wave
+                className="wave"
+                fill="#f79902"
+                paused={false}
+                options={{
+                    height: 20,
+                    amplitude: 20,
+                    speed: 0.25,
+                    points: 3,
+                }}
+            />
+
             <div className="app-table">
                 <div className="main">
                     <div className="main-header">

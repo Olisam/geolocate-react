@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react"
 import { db } from "../firebase-config"
 import { addDoc, collection } from "firebase/firestore"
 import { Link } from "react-router-dom"
-
 import MiniMap from "../components/MiniMap"
-
-
 import Wave from "react-wavify"
 
 const MainPage = () => {
@@ -26,9 +23,6 @@ const MainPage = () => {
             location.push(position.coords.latitude)
             location.push(position.coords.longitude)
 
-            console.log("Latitude is :", position.coords.latitude)
-            console.log("Longitude is :", position.coords.longitude)
-            
             let data = location
             setLocation(data)
         })
@@ -36,22 +30,16 @@ const MainPage = () => {
 
     let handleSubmit = () => {
         const locationRef = collection(db, "locations")
-
         const currentTimestamp = Date.now()
 
         addDoc(locationRef, {
             description: locationdescription,
             latitude: location[0],
             longitude: location[1],
-            timestamp: currentTimestamp
+            timestamp: currentTimestamp,
         })
-        setDescription("")
-        showalert()
-    }
 
-    let showalert = () => {
-        console.log("shown")
-        
+        setDescription("")
     }
 
     return (
@@ -63,10 +51,18 @@ const MainPage = () => {
                 options={{
                     height: 20,
                     amplitude: 20,
-                    speed: 0.15,
+                    speed: 0.25,
                     points: 3,
                 }}
             />
+
+            {/* <div className="side" id="leftside">
+
+            </div>
+            <div className="side" id="rightside">
+
+            </div> */}
+
             <div className="app">
                 <div className="main">
                     <div className="main-header">
