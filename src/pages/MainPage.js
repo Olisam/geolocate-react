@@ -3,7 +3,10 @@ import { db } from "../firebase-config"
 import { addDoc, collection } from "firebase/firestore"
 import { Link } from "react-router-dom"
 
-import Wave from 'react-wavify'
+import MiniMap from "../components/MiniMap"
+
+
+import Wave from "react-wavify"
 
 const MainPage = () => {
     let [location, setLocation] = useState([])
@@ -25,7 +28,7 @@ const MainPage = () => {
 
             console.log("Latitude is :", position.coords.latitude)
             console.log("Longitude is :", position.coords.longitude)
-
+            
             let data = location
             setLocation(data)
         })
@@ -33,17 +36,28 @@ const MainPage = () => {
 
     let handleSubmit = () => {
         const locationRef = collection(db, "locations")
+
+        const currentTimestamp = Date.now()
+
         addDoc(locationRef, {
             description: locationdescription,
             latitude: location[0],
             longitude: location[1],
+            timestamp: currentTimestamp
         })
         setDescription("")
+        showalert()
+    }
+
+    let showalert = () => {
+        console.log("shown")
+        
     }
 
     return (
         <div className="container">
-            <Wave className="wave"
+            <Wave
+                className="wave"
                 fill="#f79902"
                 paused={false}
                 options={{
@@ -72,10 +86,17 @@ const MainPage = () => {
                             }}
                             value={locationdescription}
                         ></textarea>
-
-                        <button onClick={handleSubmit}>SEND</button>
+                        <div className="buttondiv">
+                            <button
+                                className="sendbutton"
+                                onClick={handleSubmit}
+                            >
+                                SEND
+                            </button>
+                        </div>
                     </div>
                 </div>
+                <MiniMap dataFromParent={location} />
             </div>
         </div>
     )

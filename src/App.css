@@ -53,11 +53,34 @@ body {
   position: relative;
 }
 
+.app-table {
+  width: 100%;
+  max-width: 580px;
+  height: 88vh;
+  margin: 0 auto;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
 .main {
   padding: 0;
   margin: 16px 0;
-  height: 70vh;
+}
 
+.mapz {
+  background-color: red;
+  height: 25%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  max-width: 100%;
+  border: 1px;
+  position: relative;
+}
+
+.smallmap {
+  max-width: 100%;
+  position: relative;
 }
 
 .main-header {
@@ -87,6 +110,8 @@ body {
   height: 8vh;
   border-radius: 10px;
   background-color: var(--color-bgtext);
+  margin-top: 4px;
+  margin-bottom: 10px;
 }
 
 .main-list {
@@ -142,3 +167,18 @@ th {
 svg {
   margin-bottom: -10px;
 }
+
+p {
+  margin: 5px;
+}
+
+.sendbutton {
+  padding: 5px;
+
+}
+
+.buttondiv {
+  display: flex;
+  justify-content: center;
+}
+
